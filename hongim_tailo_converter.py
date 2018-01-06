@@ -2,11 +2,22 @@ import core_methods
 
 class HongimTailoConverter:
 	def __init__(self):
-		self.consonant_array = core_methods.get_syllable_array("syllable/hongim_tailo/consonant")
-		self.vowel_array = core_methods.get_syllable_array("syllable/hongim_tailo/vowel")
-		self.tone_array = core_methods.get_syllable_array("syllable/hongim_tailo/tone")
+		self.consonant_array = core_methods.get_array_from_file("syllable/hongim_tailo/consonant")
+		self.vowel_array = core_methods.get_array_from_file("syllable/hongim_tailo/vowel")
+		self.tone_array = core_methods.get_array_from_file("syllable/hongim_tailo/tone")
 
-	def convert(self, tailo_input):
+	def convert_file(self, file_name):
+		input_text_array = core_methods.get_array_from_file(file_name)
+		result = ""
+		for sentence in input_text_array:
+			tailo_chars = sentence.split(" ")
+			for tailo_char in tailo_chars:
+				hongim_char = self.convert_char(tailo_char)
+				result += hongim_char
+			result += "\n"
+		return result
+
+	def convert_char(self, tailo_input):
 		process_tailo_input = tailo_input
 
 		hongim_consonant = ""
@@ -37,9 +48,8 @@ class HongimTailoConverter:
 			pair = tone.split("\t")
 			tailo = pair[1]
 			if process_tailo_input.startswith(tailo):
-				if hongim_tone != 'nil':
-					hongim_tone = pair[0]
-				else:
+				hongim_tone = pair[0]
+				if hongim_tone == 'nil':
 					hongim_tone = ''
 				process_tailo_input = process_tailo_input[len(tailo):]
 				break
