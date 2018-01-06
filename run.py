@@ -1,12 +1,15 @@
-input_file = open("sample", "r")
-consonant_file = open("syllable/hongim_tailo/consonant", "r")
-vowel_file = open("syllable/hongim_tailo/vowel", "r")
-tone_file = open("syllable/hongim_tailo/tone", "r")
+import hitl_core
 
-input_text = input_file.read()
+consonant_array = hitl_core.get_syllable_array("syllable/hongim_tailo/consonant")
+vowel_array = hitl_core.get_syllable_array("syllable/hongim_tailo/vowel")
+tone_array = hitl_core.get_syllable_array("syllable/hongim_tailo/tone")
 
-consonant = consonant_file.read()
-vowel = vowel_file.read()
-tone = tone_file.read()
+sample_file = open("sample", "r")
+sample_simple_file = open("sample_simple", "r")
 
-print input_text
+sample_text = sample_file.read()
+sample_simple_text = sample_simple_file.read()
+
+for consonant in consonant_array:
+	print consonant
+	break
