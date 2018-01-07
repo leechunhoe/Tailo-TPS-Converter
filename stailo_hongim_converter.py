@@ -18,7 +18,7 @@ class StailoHongimConverter:
 
 		common_method.write_to_output(result, "stailo_hongim/out/main.txt")
 		hongim_result = common_method.get_hongim_from_file("stailo_hongim/out/main.txt")
-		common_method.write_to_output(tailo_result, "stailo_hongim/out/tailo.txt")
+		common_method.write_to_output(tailo_result, "stailo_hongim/out/stailo.txt")
 		common_method.write_to_output(hanji_result, "stailo_hongim/out/hanji.txt")
 		common_method.write_to_output(hongim_result, "stailo_hongim/out/hongim.txt")
 
