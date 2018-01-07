@@ -28,7 +28,7 @@ def get_non_hanji_from_file(file_name):
 	for sentence in input_text_array:
 		encoded_sentence = unicode(sentence, encoding="utf-8")
 		has_hanji = len(re.findall(ur'[\u4e00-\u9fff]+', encoded_sentence)) > 0
-		if ~has_hanji and len(encoded_sentence) > 0:
+		if not(has_hanji) and len(encoded_sentence) > 0:
 			result += sentence + "\n"
 	result = result.rstrip('\n')
 	return result
