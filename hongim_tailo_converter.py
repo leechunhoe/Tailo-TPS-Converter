@@ -2,12 +2,14 @@
 # -*- coding: utf-8 -*-
 
 import core_methods
+import re
 
 class HongimTailoConverter:
 	def __init__(self):
 		self.consonant_array = core_methods.get_array_from_file("syllable/hongim_tailo/consonant")
 		self.vowel_array = core_methods.get_array_from_file("syllable/hongim_tailo/vowel")
 		self.tone_array = core_methods.get_array_from_file("syllable/hongim_tailo/tone")
+		self.punctuation_array = core_methods.get_array_from_file("syllable/punctuation")
 
 	def convert_file(self, file_name):
 		input_text_array = core_methods.get_array_from_file(file_name)
@@ -18,14 +20,28 @@ class HongimTailoConverter:
 				hongim_char = self.convert_char(tailo_char)
 				result += hongim_char
 			result += "\n"
+		result = result.rstrip('\n')
 		return result
 
 	def convert_char(self, tailo_input):
 		process_tailo_input = tailo_input
-
+		
+		pre_punctuation = ""
 		hongim_consonant = ""
 		hongim_vowel = ""
 		hongim_tone = ""
+
+		# Handle punctuation before
+		while True:
+			has_punctuation = False
+			for punctuation in self.punctuation_array:
+				if process_tailo_input.startswith(punctuation):
+					has_punctuation = True
+					pre_punctuation += punctuation
+					process_tailo_input = process_tailo_input[len(punctuation):]
+					break
+			if has_punctuation != True:
+				break
 
 		# Assign consonant
 		for consonant in self.consonant_array:
@@ -49,8 +65,11 @@ class HongimTailoConverter:
 					hongim_vowel += pair[0]
 					process_tailo_input = process_tailo_input[len(tailo):]
 					break
+					# Break here to start the loop again
+					# to prevent match of wrong priority
+					# for next unit
 			if has_vowel != True:
-				break
+				break # When run out of vowel to match, finish
 
 		# Assign tone
 		for tone in self.tone_array:
@@ -59,7 +78,7 @@ class HongimTailoConverter:
 			if process_tailo_input.startswith(tailo):
 				hongim_tone = pair[0]
 				if hongim_tone == 'nil':
-					hongim_tone = ''
+					hongim_tone = ' '
 				process_tailo_input = process_tailo_input[len(tailo):]
 				break
 
@@ -71,5 +90,5 @@ class HongimTailoConverter:
 		if hongim_vowel == "ㄥ" and hongim_consonant == "":
 			hongim_vowel = "ㆭ"
 
-		hongim = hongim_consonant + hongim_vowel + hongim_tone + process_tailo_input
+		hongim = pre_punctuation + hongim_consonant + hongim_vowel + hongim_tone + process_tailo_input
 		return hongim
