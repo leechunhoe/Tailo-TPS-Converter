@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import core_methods
 
 class HongimTailoConverter:
@@ -45,6 +48,7 @@ class HongimTailoConverter:
 					has_vowel = True
 					hongim_vowel += pair[0]
 					process_tailo_input = process_tailo_input[len(tailo):]
+					break
 			if has_vowel != True:
 				break
 
@@ -67,5 +71,5 @@ class HongimTailoConverter:
 		if hongim_vowel == "ㄥ" and hongim_consonant == "":
 			hongim_vowel = "ㆭ"
 
-		hongim = hongim_consonant + hongim_vowel + hongim_tone
+		hongim = hongim_consonant + hongim_vowel + hongim_tone + process_tailo_input
 		return hongim
