@@ -1,32 +1,33 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import core_methods
+import common_method
 import re
 
 class StailoHongimConverter:
 	def __init__(self):
-		self.consonant_array = core_methods.get_array_from_file("stailo_hongim/syllable/consonant")
-		self.vowel_array = core_methods.get_array_from_file("stailo_hongim/syllable/vowel")
-		self.tone_array = core_methods.get_array_from_file("stailo_hongim/syllable/tone")
-		self.punctuation_array = core_methods.get_array_from_file("common/punctuation")
+		self.consonant_array = common_method.get_array_from_file("stailo_hongim/syllable/consonant")
+		self.vowel_array = common_method.get_array_from_file("stailo_hongim/syllable/vowel")
+		self.tone_array = common_method.get_array_from_file("stailo_hongim/syllable/tone")
+		self.punctuation_array = common_method.get_array_from_file("common/punctuation")
 
 	def convert_file_full(self, file_name):
 		result = self.convert_file(file_name)
-		hanji_result = core_methods.get_hanji_from_file(file_name)
-		tailo_result = core_methods.get_non_hanji_from_file(file_name)
+		hanji_result = common_method.get_hanji_from_file(file_name)
+		tailo_result = common_method.get_non_hanji_from_file(file_name)
 
-		core_methods.write_to_output(result, "stailo_hongim/out/main.txt")
-		hongim_result = core_methods.get_hongim_from_file("stailo_hongim/out/main.txt")
-		core_methods.write_to_output(tailo_result, "stailo_hongim/out/tailo.txt")
-		core_methods.write_to_output(hanji_result, "stailo_hongim/out/hanji.txt")
-		core_methods.write_to_output(hongim_result, "stailo_hongim/out/hongim.txt")
+		common_method.write_to_output(result, "stailo_hongim/out/main.txt")
+		hongim_result = common_method.get_hongim_from_file("stailo_hongim/out/main.txt")
+		common_method.write_to_output(tailo_result, "stailo_hongim/out/tailo.txt")
+		common_method.write_to_output(hanji_result, "stailo_hongim/out/hanji.txt")
+		common_method.write_to_output(hongim_result, "stailo_hongim/out/hongim.txt")
 
-		print "Conversion success!"
-		print result
+		print "Conversion success!\n"
+		print result + "\n"
+		print "Please refer stailo_hongim/out folder for details.\n"
 
 	def convert_file(self, file_name):
-		input_text_array = core_methods.get_array_from_file(file_name)
+		input_text_array = common_method.get_array_from_file(file_name)
 		result = ""
 		for sentence in input_text_array:
 			tailo_chars = sentence.split(" ")
