@@ -8,37 +8,43 @@ class StailoHongimConverter:
 	def __init__(self):
 		self.consonant_array = common_method.get_array_from_file("stailo_hongim/syllable/consonant")
 		self.vowel_array = common_method.get_array_from_file("stailo_hongim/syllable/vowel")
-		self.tone_array = common_method.get_array_from_file("stailo_hongim/syllable/tone")
+		self.tone_array = common_method.get_array_from_file("stailo_hongim/syllable/tone_standard")
+		self.tone_encode_safe_array = common_method.get_array_from_file("stailo_hongim/syllable/tone_encode_safe")
 		self.punctuation_array = common_method.get_array_from_file("common/punctuation")
 
 	def convert_file_full(self, file_name):
-		result = self.convert_file(file_name)
+		encode_safe_result = self.convert_file(file_name, True)
+		standard_result = self.convert_file(file_name, False)
+
 		hanji_result = common_method.get_hanji_from_file(file_name)
 		tailo_result = common_method.get_non_hanji_from_file(file_name)
 
-		common_method.write_to_output(result, "stailo_hongim/out/main.txt")
-		hongim_result = common_method.get_hongim_from_file("stailo_hongim/out/main.txt")
+		common_method.write_to_output(encode_safe_result, "stailo_hongim/out/main.txt")
+		common_method.write_to_output(standard_result, "stailo_hongim/out/main_standard.txt")
+		standard_hongim_result = common_method.get_hongim_from_file("stailo_hongim/out/main_standard.txt")
+		encode_safe_hongim_result = common_method.get_hongim_from_file("stailo_hongim/out/main.txt")
 		common_method.write_to_output(tailo_result, "stailo_hongim/out/stailo.txt")
 		common_method.write_to_output(hanji_result, "stailo_hongim/out/hanji.txt")
-		common_method.write_to_output(hongim_result, "stailo_hongim/out/hongim.txt")
+		common_method.write_to_output(encode_safe_hongim_result, "stailo_hongim/out/hongim.txt")
+		common_method.write_to_output(standard_hongim_result, "stailo_hongim/out/hongim_standard.txt")
 
 		print "Conversion success!\n"
-		print result + "\n"
+		print encode_safe_hongim_result + "\n"
 		print "Please refer stailo_hongim/out folder for details.\n"
 
-	def convert_file(self, file_name):
+	def convert_file(self, file_name, is_encode_safe):
 		input_text_array = common_method.get_array_from_file(file_name)
 		result = ""
 		for sentence in input_text_array:
 			tailo_chars = sentence.split(" ")
 			for tailo_char in tailo_chars:
-				hongim_char = self.convert_char(tailo_char)
+				hongim_char = self.convert_char(tailo_char, is_encode_safe)
 				result += hongim_char
 			result += "\n"
 		result = result.rstrip('\n')
 		return result
 
-	def convert_char(self, tailo_input):
+	def convert_char(self, tailo_input, is_encode_safe):
 		process_tailo_input = tailo_input
 		
 		pre_punctuation = ""
@@ -87,7 +93,12 @@ class StailoHongimConverter:
 				break # When run out of vowel to match, finish
 
 		# Assign tone
-		for tone in self.tone_array:
+		if is_encode_safe:
+			tone_array = self.tone_encode_safe_array
+		else:
+			tone_array = self.tone_array
+
+		for tone in tone_array:
 			pair = tone.split("\t")
 			tailo = pair[1]
 			if process_tailo_input.startswith(tailo):
