@@ -24,6 +24,7 @@ class HongimTailoConverter:
 		hongim_vowel = ""
 		hongim_tone = ""
 
+		# Assign consonant
 		for consonant in self.consonant_array:
 			pair = consonant.split("\t")
 			tailo = pair[1]
@@ -32,6 +33,9 @@ class HongimTailoConverter:
 				process_tailo_input = process_tailo_input[len(tailo):]
 				break
 
+		# Assign vowel
+		# At least one, can be two
+		# Handle special cases afterwards
 		while True:
 			has_vowel = False
 			for vowel in self.vowel_array:
@@ -44,6 +48,7 @@ class HongimTailoConverter:
 			if has_vowel != True:
 				break
 
+		# Assign tone
 		for tone in self.tone_array:
 			pair = tone.split("\t")
 			tailo = pair[1]
@@ -53,6 +58,14 @@ class HongimTailoConverter:
 					hongim_tone = ''
 				process_tailo_input = process_tailo_input[len(tailo):]
 				break
+
+		# Special case: single m as vowel
+		if hongim_vowel == "" and hongim_consonant == "ㄇ":
+			hongim_vowel = "ㆬ"
+
+		# Special case: ng, alone or combined
+		if hongim_vowel == "ㄥ" and hongim_consonant == "":
+			hongim_vowel = "ㆭ"
 
 		hongim = hongim_consonant + hongim_vowel + hongim_tone
 		return hongim
