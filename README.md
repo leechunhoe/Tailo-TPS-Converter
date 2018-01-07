@@ -28,7 +28,7 @@ ku2 thiu5 bang3 beng5 guat8,
 te1 thiu5 su1 ko2 hiong1
 ```
 
-主要結果 main.txt
+轉換結果樣本 main.txt
 ------
 ```
 床前明月光，疑是地上霜
@@ -38,29 +38,4 @@ te1 thiu5 su1 ko2 hiong1
 舉頭望明月，低頭思故鄉
 ㄍㄨˋㄊㄧㄨˊㆠㄤ˪ㆠㆤㄥˊㆣㄨㄚㆵ̇,
 ㄉㆤ ㄊㄧㄨˊㄙㄨ ㄍㄛˋㄏㄧㆲ 
-```
-
-方音符號結果 hongim.txt
-------
-```
-ㄘㆲˊㄑㄧㄢˊㆠㆤㄥˊㆣㄨㄚㆵ̇ㄍㆲ ,
-ㆣㄧˊㄒㄧ˫ㄉㆤ˫ㄒㄧㆲ˫ㄙㆲ
-ㄍㄨˋㄊㄧㄨˊㆠㄤ˪ㆠㆤㄥˊㆣㄨㄚㆵ̇,
-ㄉㆤ ㄊㄧㄨˊㄙㄨ ㄍㄛˋㄏㄧㆲ
-```
-
-漢字結果 hanji.txt
-------
-```
-床前明月光，疑是地上霜
-舉頭望明月，低頭思故鄉
-```
-
-簡化台羅結果 stailo.txt
-------
-```
-tshong5 tshian5 beng5 guat8 kong1,
-gi5 si7 te7 siong7 song1
-ku2 thiu5 bang3 beng5 guat8,
-te1 thiu5 su1 ko2 hiong1
 ```
