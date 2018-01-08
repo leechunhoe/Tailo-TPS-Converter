@@ -23,7 +23,7 @@ python run.py input.txt
 ------
 ```
 床前明月光，疑是地上霜
-tshong5 tshian5 beng5 guat8 kong1,
+tshong5 tsian5 beng5 guat8 kong1,
 gi5 si7 te7 siong7 song1
 
 舉頭望明月，低頭思故鄉
@@ -35,7 +35,7 @@ te1 thiu5 su1 ko2 hiong1
 ------
 ```
 床前明月光，疑是地上霜
-ㄘㆲˊㄑㄧㄢˊㆠㆤㄥˊㆣㄨㄚㆵ˙ㄍㆲ ,
+ㄘㆲˊㄐㄧㄢˊㆠㆤㄥˊㆣㄨㄚㆵ˙ㄍㆲ ,
 ㆣㄧˊㄒㄧ˫ㄉㆤ˫ㄒㄧㆲ˫ㄙㆲ 
 
 舉頭望明月，低頭思故鄉
