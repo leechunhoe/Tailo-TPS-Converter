@@ -1,44 +1,70 @@
 # 台羅拼音、方音符號轉換器 Tailo-TPS-Converter
-這是轉換台羅拼音和方音符號的工具
+Python program to do conversion between Tailo Romanisation and Taiwan Phonetic Symbol.
 
-## 現有功能
-1. 單向轉換簡易台羅到方音符號。
+Requirement
+=====================
+Python 2.7+
 
-## 如何使用
-1. 儲存含簡化台羅拼音（號碼標音、無破折）的文檔，例input.txt。
-* 注意：**台羅的字行不可包括漢字和／或除標點符號以外的其他字符**
-
-2. 確保您的電腦已安裝python；在此插件的主文件夾，運行
-```
-python run.py input.txt
+How to Use
+=====================
+```bash
+python run.py [--safe] -i input.txt [-o] output.txt
 ```
 
-3. 如運行成功，開啟`stailo_hongim/out`查看轉換結果。
-* main.txt: 主結果，包括漢字和方音符號
-* hongim.txt: 方音符號
-* tailo.txt: 簡化台羅拼音
-* hanji.txt: 漢字
+Arguments
+=====================
+<pre>
+Compulsory:
+-i      Input file
 
-輸入文檔 input.txt
-------
-```
-床前明月光，疑是地上霜
-tshong5 tsian5 beng5 guat8 kong1,
-gi5 si7 te7 siong7 song1
+Optional:
+--safe  Enable unicode-safe TPS that render on most system/browser (known except iOS).
+-o      Output file, output.txt by default
+</pre>
 
-舉頭望明月，低頭思故鄉
-ku2 thiu5 bang3 beng5 guat8,
-te1 thiu5 su1 ko2 hiong1
-```
+### Example input.txt
+<pre>
+朝辭白帝彩雲間，千里江陵一日還
+tiau1 su5 pek8 te7 pek8 te7 tshai2 un5 kan1,
+tshian1 li2 kang1 leng5 it4 jit8 huan5
+兩岸猿聲啼不住，輕舟已過萬重山
+liong2 gan7 uan5 seng1 the5 put4 tsu3,
+kheng1 tsiu1 i2 kue3 ban7 tiong5 san1
+</pre>
 
-轉換結果樣本 main.txt
-------
-```
-床前明月光，疑是地上霜
-ㄘㆲˊㄐㄧㄢˊㆠㆤㄥˊㆣㄨㄚㆵ˙ㄍㆲ ,
-ㆣㄧˊㄒㄧ˫ㄉㆤ˫ㄒㄧㆲ˫ㄙㆲ 
+### Output
+<pre>
+朝辭白帝彩雲間，千里江陵一日還
+ㄉㄧㄠ ㄙㄨˊㄅㆤㆶ˙ㄉㆤ˫ㄅㆤㆶ˙ㄉㆤ˫ㄘㄞˋㄨㄣˊㄍㄢ ，
+ㄑㄧㄢ ㄌㄧˋㄍㄤ ㄌㆤㄥˊㄧㆵㆢㄧㆵ˙ㄏㄨㄢˊ
+兩岸猿聲啼不住，輕舟已過萬重山
+ㄌㄧㆲˋㆣㄢ˫ㄨㄢˊㄙㆤㄥ ㄊㆤˊㄅㄨㆵㄗㄨ˪，
+ㄎㆤㄥ ㄐㄧㄨ ㄧˋㄍㄨㆤ˪ㆠㄢ˫ㄉㄧㆲˊㄙㄢ 
+</pre>
 
-舉頭望明月，低頭思故鄉
-ㄍㄨˋㄊㄧㄨˊㆠㄤ˪ㆠㆤㄥˊㆣㄨㄚㆵ˙,
-ㄉㆤ ㄊㄧㄨˊㄙㄨ ㄍㄛˋㄏㄧㆲ 
-```
+
+The MIT License (MIT)
+=====================
+
+Copyright © 2018 Lee Chun Hoe
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the “Software”), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
