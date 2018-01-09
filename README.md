@@ -11,7 +11,7 @@ How to Use
 python run.py [--safe] -i input.txt [-o] output.txt
 ```
 
-Arguments
+Parameters
 =====================
 <pre>
 Compulsory:
@@ -32,7 +32,7 @@ liong2 gan7 uan5 seng1 the5 put4 tsu3,
 kheng1 tsiu1 i2 kue3 ban7 tiong5 san1
 </pre>
 
-### Output
+### Result
 <pre>
 朝辭白帝彩雲間，千里江陵一日還
 ㄉㄧㄠ ㄙㄨˊㄅㆤㆶ˙ㄉㆤ˫ㄅㆤㆶ˙ㄉㆤ˫ㄘㄞˋㄨㄣˊㄍㄢ ，
