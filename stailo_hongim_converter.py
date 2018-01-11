@@ -11,7 +11,7 @@ class StailoHongimConverter:
 		self.tone_array = common_method.get_array_from_file("stailo_hongim/syllable/tone_standard")
 		self.tone_encode_safe_array = common_method.get_array_from_file("stailo_hongim/syllable/tone_encode_safe")
 		self.punctuation_array = common_method.get_array_from_file("common/punctuation")
-		self.punctuation_pair_array = common_method.get_array_from_file("stailo_hongim/syllable/punctuation")
+		self.punctuation_pair_array = common_method.get_array_from_file("common/han_roman_punctuation")
 
 	def convert_file_full(self, file_name):
 		encode_safe_result = self.convert_file(file_name, True)
