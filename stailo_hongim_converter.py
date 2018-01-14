@@ -4,8 +4,13 @@
 import common_method
 import re
 
+import os
+
+
 class StailoHongimConverter:
 	def __init__(self):
+		os.chdir(os.path.dirname(os.path.realpath(__file__)))
+		# print(os.path.dirname(os.path.realpath(__file__)))
 		self.consonant_array = common_method.get_array_from_file("stailo_hongim/syllable/consonant")
 		self.vowel_array = common_method.get_array_from_file("stailo_hongim/syllable/vowel")
 		self.tone_array = common_method.get_array_from_file("stailo_hongim/syllable/tone_standard")
@@ -33,10 +38,31 @@ class StailoHongimConverter:
 		print encode_safe_hongim_result + "\n"
 		print "Please refer stailo_hongim/out folder for details.\n"
 
-	def convert_save_file(self, input_file_name, encode_safe, output_file_name):
+	def convert_save_hongim(self, input_file_name, encode_safe, output_file_name):
 		result = self.convert_file(input_file_name, encode_safe)
 		common_method.write_to_output(result, output_file_name)
 		return result
+
+	def convert_save_hongim_without_hanji(self, input_file_name, encode_safe, output_file_name):
+		result = self.convert_file(input_file_name, encode_safe)
+		common_method.write_to_output(result, "intermidiate.txt")
+		hongim_result = common_method.get_non_hanji_from_file("intermidiate.txt")
+		common_method.write_to_output(hongim_result, output_file_name)
+		os.remove("intermidiate.txt")
+		return hongim_result
+
+	def save_tailo(self, input_file_name, encode_safe, output_file_name):
+		tailo_result = common_method.get_non_hanji_from_file(input_file_name)
+		common_method.write_to_output(tailo_result, output_file_name)
+		return tailo_result
+
+	def convert_save_hanji(self, input_file_name, encode_safe, output_file_name):
+		result = self.convert_file(input_file_name, encode_safe)
+		common_method.write_to_output(result, "intermidiate.txt")
+		hanji_result = common_method.get_hanji_from_file("intermidiate.txt")
+		common_method.write_to_output(hanji_result, output_file_name)
+		os.remove("intermidiate.txt")
+		return hanji_result
 
 	def convert_file(self, input_file_name, is_encode_safe):
 		input_text_array = common_method.get_array_from_file(input_file_name)
